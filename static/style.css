@@ -54,7 +54,7 @@ body {
   font-family: Arial;
   margin: 0;
 }
-
+/* location, size and colour of the header */
 header {
   padding: 60px;
   text-align: center;
@@ -91,7 +91,7 @@ header {
   background-color: #f1f1f1;
   padding: 20px;
 }
-
+/* the colour and location of the footer */
 footer {
   padding: 20px;
   text-align: center;
@@ -104,4 +104,19 @@ footer {
   }
 }
 
-body,h1,h2,h3,h4,h5,h6 {font-family: Righteous, sans-serif;}
+/* click function */
+body,h1,h2,h3,h4,h5,h6 {
+  font-family: Righteous, sans-serif;
+}
+
+/* only three image each roll */
+.three-column{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2em;
+}
+
+/* all image size at 100% */
+img{
+  width: 100%;
+}

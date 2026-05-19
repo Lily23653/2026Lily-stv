@@ -1,0 +1,11 @@
+{%extends "layout.html" %}
+{% block body %}
+<div class="three-column">
+    {% for fishing in results %}
+    <div class="w3-card-4">\
+        <h1>{{ fishing[1] }} {{ fishing[2] }}</h1>
+        <img src="{{ fishing [3] }}" alt="{{ fishing[2] }}">
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

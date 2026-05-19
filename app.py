@@ -29,6 +29,16 @@ def hello_world():
     items = query_db(sql)
     print(items)
     return render_template("Basic.html", items=items)
+    
+@app.route
+def home():
+    sql = """
+                SELECT item.name, item.image_url, item.description, item.appears, item.weather, item.season, item.Fishing_level, item.Location
+                FROM item
+                JOIN item ON item.id= """
+    results = query_db(sql)
+    return render_template("home.html" results=results)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
