@@ -1,12 +1,13 @@
 {% extends "basic.html" %}
 {% block body %}
-<h1>skdfkshjfkdshjfjkh</h1>
 <div class="three-column">
     {% for fishing in items %}
+    <a href="fish/{{fishing[0]}}">
     <div class="w3-card-4">
         <h1>{{ fishing[1] }}</h1>
         <img src="{{ fishing [2] }}" alt="{{ fishing[1] }}">
     </div>
+    </a>
     {% endfor %}
 </div>
 {% endblock %}

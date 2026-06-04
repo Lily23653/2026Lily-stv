@@ -33,10 +33,10 @@ def hello_world():
 @app.route("/fish/<int:id>")
 def home(id):
     sql = """
-                SELECT * FROM item;"""
-    results = query_db(sql)
-    print(results)
-    return render_template("home.html", items=items)
+                SELECT * FROM item WHERE id=?;"""
+    fish = query_db(sql, (id,), one=True)
+    print(fish)
+    return render_template("fish.html", fish=fish)
 
 
 if __name__ == "__main__":
