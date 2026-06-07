@@ -3,8 +3,6 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-
-
 .two-column{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -50,7 +48,7 @@ body {
 header {
   padding: 60px;
   text-align: center;
-  background: #8b5c3c;
+  background: #4A6572;
   color: white;
 }
 
@@ -87,7 +85,7 @@ header {
 footer {
   padding: 20px;
   text-align: center;
-  background: #ddd;
+  background: #4A6572;
 }
 
 @media screen and (max-width: 700px) {
@@ -111,4 +109,11 @@ body,h1,h2,h3,h4,h5,h6 {
 /* all image size at 100% */
 img{
   width:75%;
+}
+
+/* page layout when clicked the image */
+.two-column{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3em;
 }
