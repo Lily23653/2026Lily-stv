@@ -1,5 +1,16 @@
 {% extends "basic.html" %}
 {% block body %}
-
+<div class="two-column">
+    <img src="{{ bike[6] }}" alt="{{ bike[2] }}">
+    <div class="info">
+        <h1>Appears: {{ item[4] }}mph</h1>
+        <h1>Weather: {{ item[5] }}</h1>
+        <h1>Season: {{ item[6] }}</h1>
+        <h1>Fishing Level: {{ item[7] }}</h1>
+        <h1>Location: {{ item[8] }}</h1>
+        <h1>Description</h1>
+        <h1>{{ bike[3] }}</h1>
+    </div>
+</div>
 {{ fish }}
 {% endblock %}
