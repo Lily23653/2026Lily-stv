@@ -27,7 +27,6 @@ def query_db(query, args=(), one=False):
 def hello_world():
     sql= "SELECT * FROM item;"
     items = query_db(sql)
-    print(items)
     return render_template("home.html", items=items)
     
 @app.route("/fish/<int:id>")
@@ -35,7 +34,6 @@ def home(id):
     sql = """
                 SELECT * FROM item WHERE id=?;"""
     fish = query_db(sql, (id,), one=True)
-    print(fish)
     return render_template("fish.html", fish=fish)
 
 

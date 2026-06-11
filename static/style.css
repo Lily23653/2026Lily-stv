@@ -48,7 +48,7 @@ body {
 header {
   padding: 60px;
   text-align: center;
-  background: #4A6572;
+  background: #2B4C7E;
   color: white;
 }
 
@@ -76,11 +76,7 @@ header {
 }
 
 
-.side {
-  flex: 30%;
-  background-color: #f1f1f1;
-  padding: 20px;
-}
+
 /* the colour and location of the footer */
 footer {
   padding: 20px;
@@ -88,6 +84,11 @@ footer {
   background: #4A6572;
 }
 
+.side {
+  flex: 30%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
 @media screen and (max-width: 700px) {
   .container, .navbar {   
     flex-direction: column;
