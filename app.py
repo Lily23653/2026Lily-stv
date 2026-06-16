@@ -1,4 +1,4 @@
-from flask import Flask, render_template, g, render_template
+from flask import Flask, render_template, g, render_template, redirect
 import sqlite3
 
 app = Flask(__name__)
@@ -40,3 +40,4 @@ def home(id):
 if __name__ == "__main__":
     app.run(debug=True)
     
+

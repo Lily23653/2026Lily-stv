@@ -6,3 +6,13 @@ SELECT * FROM item;
 
 SELECT *
 FROM item WHERE item.id= ?;
+
+CREATE TABLE Farm (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    layout TEXT,
+    specialty TEXT,
+    difficulty TEXT,
+    pros TEXT,
+    cons TEXT
+);
