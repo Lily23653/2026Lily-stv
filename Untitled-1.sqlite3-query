@@ -16,3 +16,30 @@ CREATE TABLE Farm (
     pros TEXT,
     cons TEXT
 );
+
+CREATE TABLE planting (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Seed TEXT,
+    season TEXT,
+    Growth time TEXT,
+    Detail TEXT
+);
+
+CREATE TABLE items (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    Function TEXT,
+    Source TEXT,
+    Location TEXT,
+    How_to_get TEXT
+);
+
+CREATE TABLE NPC (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    Birthday TEXT,
+    Address TEXT,
+    loves TEXT,
+    Hates TEXT
+    
+);
