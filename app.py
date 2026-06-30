@@ -1,4 +1,4 @@
-from flask import Flask, render_template, g, render_template, redirect
+from flask import Flask, g, render_template, redirect
 import sqlite3
 
 app = Flask(__name__)
@@ -25,19 +25,34 @@ def query_db(query, args=(), one=False):
 
 @app.route("/")
 def hello_world():
-    sql= "SELECT * FROM item;"
+    sql= "SELECT * FROM fish;"
     items = query_db(sql)
     return render_template("home.html", items=items)
     
 @app.route("/fish/<int:id>")
-def home(id):
+def fish_detail(id):
     sql = """
-                SELECT * FROM item WHERE id=?;"""
+                SELECT * FROM fish WHERE id=?;"""
     fish = query_db(sql, (id,), one=True)
     return render_template("fish.html", fish=fish)
+
+@app.route("/Planting")
+def Planting(id):
+    return render_template("Planting.html")
+
+@app.route("/Farm")
+def Farm(id):
+    return render_template("Farm.html")
+
+@app.route("/Items")
+def Items(id):
+    return render_template("Items.html")
+
+@app.route("/NPC")
+def NPC(id):
+    return render_template("NPC.html")
 
 
 if __name__ == "__main__":
     app.run(debug=True)
     
-

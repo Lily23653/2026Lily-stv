@@ -1,7 +1,7 @@
 {% extends "basic.html" %}
 {% block body %}
 <div class="three-column">
-    {% for item in items %}
+    {% for items in items %}
     <a href="items/{{items[0]}}">
     <div class="w3-card-4">
         <h1>{{ items[1] }}</h1>
