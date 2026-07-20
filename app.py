@@ -25,7 +25,7 @@ def query_db(query, args=(), one=False):
 
 @app.route("/")
 def hello_world():
-    sql= "SELECT * FROM fish;"
+    sql= "SELECT * FROM fishing;"
     items = query_db(sql)
     return render_template("home.html", items=items)
     
@@ -34,19 +34,21 @@ def fish_detail(id):
     sql = """
                 SELECT * FROM fish WHERE id=?;"""
     fish = query_db(sql, (id,), one=True)
-    return render_template("fish.html", fish=fish)
+    return render_template("fishing.html", fish=fish)
 
 @app.route("/Planting")
 def Planting(id):
     return render_template("Planting.html")
 
 @app.route("/Farm")
-def Farm(id):
-    return render_template("Farm.html")
+def Farm():
+    sql= "SELECT * FROM Farm;"
+    items = query_db(sql)
+    return render_template("Farm.html",items=items)
 
-@app.route("/Items")
+@app.route("/items")
 def Items(id):
-    return render_template("Items.html")
+    return render_template("items.html")
 
 @app.route("/NPC")
 def NPC(id):
