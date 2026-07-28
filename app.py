@@ -38,21 +38,27 @@ def fish_detail(id):
 
 @app.route("/Planting")
 def Planting(id):
-    return render_template("Planting.html")
+    sql= "SELECT * FROM planting;"
+    items = query_db(sql)
+    return render_template("planting.html",planting=planting)
 
 @app.route("/Farm")
 def Farm():
     sql= "SELECT * FROM Farm;"
     items = query_db(sql)
-    return render_template("Farm.html",items=items)
+    return render_template("Farm.html",Farm=Farm)
 
 @app.route("/items")
 def Items(id):
-    return render_template("items.html")
+    sql= "SELECT * FROM item;"
+    items = query_db(sql)
+    return render_template("items.html",items=items)
 
 @app.route("/NPC")
 def NPC(id):
-    return render_template("NPC.html")
+    sql= "SELECT * FROM NPC;"
+    NPC = query_db(sql)
+    return render_template("NPC.html",NPC=NPC)
 
 
 if __name__ == "__main__":
