@@ -60,6 +60,17 @@ def NPC(id):
     NPC = query_db(sql)
     return render_template("NPC.html",NPC=NPC)
 
+@app.route("/login")
+def NPC(id):
+    sql= "SELECT * FROM NPC;"
+    NPC = query_db(sql)
+    return render_template("NPC.html",NPC=NPC)
+
+@app.route("/signup")
+def NPC(id):
+    sql= "SELECT * FROM NPC;"
+    NPC = query_db(sql)
+    return render_template("NPC.html",NPC=NPC)
 
 if __name__ == "__main__":
     app.run(debug=True)
