@@ -61,6 +61,8 @@ def NPC(id):
     return render_template("NPC.html",NPC=NPC)
 
 
+
+
 if __name__ == "__main__":
     app.run(debug=True)
     
