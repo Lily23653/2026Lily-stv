@@ -1,11 +1,11 @@
 {% extends "basic.html" %}
 {% block body %}
 <div class="three-column">
-    {% for NPC in items %}
-    <a href="NPC/{{NPC[0]}}">
+    {% for citizen in NPC %}
+    <a href="citizen/{{citizen[0]}}">
     <div class="w3-card-4">
-        <h1>{{ NPC[1] }}</h1>
-        <img src="{{ NPC[2] }}" alt="{{ NPC[1] }}">
+        <h1>{{ citizen[1] }}</h1>
+        <img src="{{ citizen[2] }}" alt="{{ citizen[1] }}">
     </div>
     </a>
     {% endfor %}
