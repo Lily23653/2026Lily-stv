@@ -29,12 +29,18 @@ def hello_world():
     items = query_db(sql)
     return render_template("home.html", items=items)
     
+@app.route("/fishing")
+def fishing():
+    sql= "SELECT * FROM fishing;"
+    items = query_db(sql)
+    return render_template("fishing.html", items=items)
+
 @app.route("/fish/<int:id>")
 def fish_detail(id):
     sql = """
-                SELECT * FROM fish WHERE id=?;"""
+                SELECT * FROM fishing WHERE id=?;"""
     fish = query_db(sql, (id,), one=True)
-    return render_template("fishing.html", fish=fish)
+    return render_template("fish.html", fish=fish)
 
 @app.route("/planting")
 def planting():
@@ -42,9 +48,9 @@ def planting():
     planting = query_db(sql)
     return render_template("Planting.html",planting=planting)
 
-@app.route("/farm")
+@app.route("/Farm")
 def Farm():
-    sql= "SELECT * FROM farm;"
+    sql= "SELECT * FROM Farm;"
     farm = query_db(sql)
     return render_template("Farm.html",farm=farm)
 

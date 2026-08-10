@@ -4,11 +4,11 @@
     <h1>Farm-guide section:</h1>
   </div>
   <div class="three-column">
-    {% for layout in items %}
-    <a href="layout/{{layout[2]}}">
+    {% for f in farm %}
+    <a href="fish/{{f[2]}}">
     <div class="w3-card-4">
-        <h1>{{ layout[1] }}</h1>
-        <img src="{{ layout[2] }}" alt="{{ layout[1] }}">
+        <h1>{{ f[1] }}</h1>
+        <img src="{{ f[2] }}" alt="{{ f[1] }}">
     </div>
     </a>
     {% endfor %}
