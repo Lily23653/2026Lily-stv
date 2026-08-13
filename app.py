@@ -48,12 +48,25 @@ def planting():
     planting = query_db(sql)
     return render_template("Planting.html",planting=planting)
 
+@app.route("/planting/<int:id>")
+def Plant():
+    sql = """
+                SELECT * FROM Planting WHERE id=?;"""
+    plant = query_db(sql, (id,), one=True)
+    return render_template("Planting.html", plant=plant)
+
 @app.route("/Farm")
 def Farm():
     sql= "SELECT * FROM Farm;"
     farm = query_db(sql)
     return render_template("Farm.html",farm=farm)
 
+@app.route("/Farm/<int:id>")
+def nongchang():
+    sql = """
+                SELECT * FROM farm WHERE id=?;"""
+    farm = query_db(sql, (id,), one=True)
+    return render_template("Farm.html", farm=farm)
 #
 @app.route("/NPC")
 def NPC():
@@ -61,7 +74,12 @@ def NPC():
     NPC = query_db(sql)
     return render_template("NPC.html",NPC=NPC)
 
-
+@app.route("/NPC/<int:id>")
+def NPc():
+    sql = """
+                SELECT * FROM NPC WHERE id=?;"""
+    npc = query_db(sql, (id,), one=True)
+    return render_template("NPC.html", npc=npc)
 
 
 if __name__ == "__main__":
