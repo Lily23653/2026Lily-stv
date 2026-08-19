@@ -35,11 +35,14 @@ def fishing():
     items = query_db(sql)
     return render_template("fishing.html", items=items)
 
+# Going to a specific fish page
 @app.route("/fish/<int:id>")
 def fish_detail(id):
     sql = """
                 SELECT * FROM fishing WHERE id=?;"""
     fish = query_db(sql, (id,), one=True)
+    if not fish:
+        abort(404)
     return render_template("fish.html", fish=fish)
 
 @app.route("/planting")
@@ -48,11 +51,14 @@ def planting():
     planting = query_db(sql)
     return render_template("Planting.html",planting=planting)
 
+# Going to a specific planting page
 @app.route("/planting/<int:id>")
 def Plant():
     sql = """
                 SELECT * FROM Planting WHERE id=?;"""
     plant = query_db(sql, (id,), one=True)
+    if not plant:
+        abort(404)
     return render_template("Planting.html", plant=plant)
 
 @app.route("/Farm")
@@ -66,6 +72,8 @@ def nongchang():
     sql = """
                 SELECT * FROM farm WHERE id=?;"""
     farm = query_db(sql, (id,), one=True)
+    if not farm:
+        abort(404)
     return render_template("Farm.html", farm=farm)
 #
 @app.route("/NPC")
@@ -79,6 +87,8 @@ def NPc():
     sql = """
                 SELECT * FROM NPC WHERE id=?;"""
     npc = query_db(sql, (id,), one=True)
+    if not NPC:
+        abort(404)
     return render_template("NPC.html", npc=npc)
 
 
