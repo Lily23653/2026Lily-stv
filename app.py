@@ -1,4 +1,4 @@
-from flask import Flask, g, render_template, redirect
+from flask import Flask, g, render_template, redirect, abort
 import sqlite3
 
 app = Flask(__name__)
@@ -155,6 +155,6 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 @app.errorhandler(500)
-def internal_server_error(e)：
+def internal_server_error(e):
     #When the inner system went wrong (500)
     return render_template('500.html'), 500
