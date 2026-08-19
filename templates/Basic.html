@@ -13,12 +13,14 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
+<!--the header for all the pages-->
 <body>
   <header>
     <h1>Stardew Valley</h1>
     <p>Create the farm of your dreams: Turn your overgrown fields into a lively and bountiful farm! </p>
   </header>
 
+<!--Naviation bar for all labels-->
   <div class="navbar">
     <a class="active" href="/">Home</a>
   <a href="/fishing">Fishing</a>
@@ -28,21 +30,16 @@
   <input type="text" placeholder="Search..">
 </div>
   
-
-
 <h1>Fishing-guide section:</h1>
 
+<!--Dropdown filter-->
 <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-  <div id="myDropdown" class="dropdown-content">
-    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-    <a href="#about">About</a>
-    <a href="#base">Base</a>
-    <a href="#blog">Blog</a>
-    <a href="#contact">Contact</a>
-    <a href="#custom">Custom</a>
-    <a href="#support">Support</a>
-    <a href="#tools">Tools</a>
+  <button class="dropbtn">Stardew Categories</button>
+  <div class="dropdown-content">
+    <a href="/fishing">Fishing</a>
+    <a href="/Farm">The Farm</a>
+    <a href="/planting">Planting</a>
+    <a href="/NPC">NPC</a>
   </div>
 </div>
   
@@ -50,7 +47,7 @@
     {% block body %}
     {% endblock %}
   </div>  
-
+<!--For avoiding the website to break-->
 <div class="error-container" style="text-align: center; padding: 50px;">
      <h1>404 - Oh No! Your Fish Hook Seems Empty</h1>
      <p>The page/object you are looking for does not exist in our database. Click Help down below to find help.</p>
@@ -60,7 +57,7 @@
 </body>
 
 
-
+<!--footer that stays at the bottom-->
 <footer>
   <h2>contact us:
   </h2>
