@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Righteous">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <title>Page Not Found - Please Try Another Address</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
@@ -47,6 +50,13 @@
     {% block body %}
     {% endblock %}
   </div>  
+
+<div class="error-container" style="text-align: center; padding: 50px;">
+     <h1>404 - Oh No! Your Fish Hook Seems Empty</h1>
+     <p>The page/object you are looking for does not exist in our database. Click Help down below to find help.</p>
+     <a href="/fish" class="btn">Back to Home page</a>
+</div>
+
 </body>
 
 
