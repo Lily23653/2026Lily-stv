@@ -15,7 +15,7 @@ def get_db():
 def get_db_connection(exception):
     db= getattr(g, "_database", None)
     if db is not None:
-        db.close
+        db.close()
 
 def query_db(query, args=(), one=False):
     cur = get_db().execute(query, args)
@@ -56,11 +56,11 @@ def planting():
 @app.route("/planting/<int:id>")
 def plant_detail(id):
     sql = """
-                SELECT * FROM Planting WHERE id=?;"""
+                SELECT * FROM planting WHERE id=?;"""
     plant = query_db(sql, (id,), one=True)
     if not plant:
         abort(404)
-    return render_template("Planting.html", plant=plant)
+    return render_template("plant.html", plant=plant)
 
 @app.route("/Farm")
 def farm_list():
@@ -113,7 +113,7 @@ def season_filter(season_name):
 @app.route('/fish', methods=['GET'])
 def search_for_fish():
     query = request.args.get('q', "").strip()[:50]
-    season_item = request,args.get('season', '').strip()
+    season_item = request.args.get('season', '').strip()
 
     sql = "SELECT * FROM fish WHERE 1=1"
     params = []

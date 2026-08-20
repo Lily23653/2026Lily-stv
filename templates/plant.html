@@ -1,0 +1,16 @@
+{% extends "basic.html" %}
+{% block body %}
+
+<!-- item image -->
+<div class="two-column">
+    <img src="{{ plant[5] }}" alt="{{ plant[5] }}">
+    <!-- information panel -->
+    <div class="info">
+        <h1>Seed Name: {{ plant[1] }}</h1>
+        <h1>Season: {{ plant[2] }}</h1>
+        <h1>Growht time: {{ plant[3] }}</h1>
+        <h1>Regrowth: {{ plant[4] }}</h1>
+    </div>
+</div>
+
+{% endblock %}
