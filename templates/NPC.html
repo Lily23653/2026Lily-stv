@@ -1,5 +1,8 @@
 {% extends "basic.html" %}
 {% block body %}
+<!--header for the NPC section-->
+<h1>NPC information-guide section:</h1>
+
 <div class="three-column">
     {% for citizen in NPC %}
     <a href="citizen/{{citizen[0]}}">

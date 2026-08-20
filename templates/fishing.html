@@ -1,5 +1,9 @@
 {% extends "basic.html" %}
 {% block body %}
+<!--header for the fish section-->
+<h1>Fishing-guide section:</h1>
+
+<!--layout of the fishing section-->
 <div class="three-column">
     {% for fishing in items %}
     <a href="fish/{{fishing[0]}}">
