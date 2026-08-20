@@ -75,7 +75,7 @@ def farm_detail(id):
     farm = query_db(sql, (id,), one=True)
     if not farm:
         abort(404)
-    return render_template("Farm.html", farm=farm)
+    return render_template("FarmLayout.html", farm=farm)
 
 @app.route("/NPC")
 def npc_list():
@@ -90,7 +90,7 @@ def npc_detail(id):
     npc = query_db(sql, (id,), one=True)
     if not npc:
         abort(404)
-    return render_template("NPC.html", npc=npc)
+    return render_template("NPCdetail.html", npc=npc)
 
 #filter content
 @app.route("/season/<season_name>")
