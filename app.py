@@ -1,29 +1,21 @@
-from flask import Flask, g, render_template, redirect, abort
+from flask import Flask, g, render_template, redirect, abort, request
 import sqlite3
 
 app = Flask(__name__)
-
 DATABASE = 'database.db'
 
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
         db = g._database = sqlite3.connect(DATABASE)
+        db.row_factory = sqlite3.Row
     return db
 
 #Building connection with database
-def get_db_connection():
-    con = sqlite3.connect('database.db')
-    con.row_factory = sqlite3.Row
-    return con
-
-
-
-@app.teardown_appcontext
-def close_connection(exception):
-    db = getattr(g, '_database', None)
+def get_db_connection(exception):
+    db= getattr(g, "_database", None)
     if db is not None:
-        db.close()
+        db.close
 
 def query_db(query, args=(), one=False):
     cur = get_db().execute(query, args)
@@ -31,6 +23,7 @@ def query_db(query, args=(), one=False):
     cur.close()
     return (rv[0] if rv else None) if one else rv
 
+#route to other pages
 @app.route("/")
 def hello_world():
     sql= "SELECT * FROM fishing;"
@@ -61,7 +54,7 @@ def planting():
 
 # Going to a specific planting page
 @app.route("/planting/<int:id>")
-def Plant():
+def plant_detail(id):
     sql = """
                 SELECT * FROM Planting WHERE id=?;"""
     plant = query_db(sql, (id,), one=True)
@@ -70,43 +63,57 @@ def Plant():
     return render_template("Planting.html", plant=plant)
 
 @app.route("/Farm")
-def Farm():
+def farm_list():
     sql= "SELECT * FROM Farm;"
     farm = query_db(sql)
     return render_template("Farm.html",farm=farm)
 
 @app.route("/Farm/<int:id>")
-def nongchang():
+def farm_detail(id):
     sql = """
                 SELECT * FROM farm WHERE id=?;"""
     farm = query_db(sql, (id,), one=True)
     if not farm:
         abort(404)
     return render_template("Farm.html", farm=farm)
-#
+
 @app.route("/NPC")
-def NPC():
+def npc_list():
     sql= "SELECT * FROM NPC;"
-    NPC = query_db(sql)
-    return render_template("NPC.html",NPC=NPC)
+    npc = query_db(sql)
+    return render_template("NPC.html",NPC=npc)
 
 @app.route("/NPC/<int:id>")
-def NPc():
+def npc_detail(id):
     sql = """
                 SELECT * FROM NPC WHERE id=?;"""
     npc = query_db(sql, (id,), one=True)
-    if not NPC:
+    if not npc:
         abort(404)
     return render_template("NPC.html", npc=npc)
 
+#filter content
+@app.route("/season/<season_name>")
+def season_filter(season_name):
+    #searching for specofoc season and including "All" and "Any"
+    sql_fish = """
+    SELECT * FROM fishing 
+    WHERE season LIKE ? OR Season LIKE '%All%' OR Season LIKE '%Any%';
+    """
+    fishes = query_db(sql_fish, ("%" + season_name + "%"))
+
+    #search in planting
+    sql_plant = """
+    SELECT * FROM planting 
+    WHERE season LIKE ? OR Season LIKE '%All%' OR Season LIKE '%Any%';
+    """
+    plants = query_db(sql_plant, ("%" + season_name + "%"))
+    return render_template("season.html", season=season_name, fishes=fishes, plants=plants)
+
 @app.route('/fish', methods=['GET'])
 def search_for_fish():
-    query = request.args.get('q', '').strip()
-    season_item = args.get('season', '').strip()
-    if len(query) > 50:
-        query = query[:50]
-
-    con = get_db_connection()
+    query = request.args.get('q', "").strip()[:50]
+    season_item = request,args.get('season', '').strip()
 
     sql = "SELECT * FROM fish WHERE 1=1"
     params = []
@@ -121,32 +128,11 @@ def search_for_fish():
     sql += "ORDER BY name ASC"
 
     try:
-        fish_list = con.execute(sql, params),fetchall()
-        con.close()
-    except sqlite3.Error as e:
-        con.close()
-        absort(500)
+        fish_list = query_db(sql, params)
+    except sqlite3.Error:
+        abort(500)
 
     return render_template('fish_list.html',fish_list=fish_list, query=query, selected_season=season_item)
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
-@app.route('/fish/<int:fish_id>')
-def fish_detail(id):
-    #Detecting if the input id is positive
-    if id <= 0:
-        absort(404)
-    con = get_db_connection()
-    fish = con.execute('SELECT * FROM fish WHERE id = ?', (fish_id,)).fetchone()
-    con.close()
-
-    #if the inputed id is not in database
-    if fish is None:
-        abort(404)
-
-    return render_template('fish_detail.html', fish=fish)
 
 #If the entered web address is wrong
 @app.errorhandler(404)
@@ -158,3 +144,7 @@ def page_not_found(e):
 def internal_server_error(e):
     #When the inner system went wrong (500)
     return render_template('500.html'), 500
+
+
+if __name__ == "__main__":
+    app.run(debug=True)

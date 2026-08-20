@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ season }} Season Guide</title>
+</head>
+<body>
+    <!--button to switch season-->
+    <div class="season-tabs">
+        <a href="/season/Spring"> Spring</a>
+        <a href="/season/Summer"> Summer</a>
+        <a href="/season/Fall"> Fall</a>
+        <a href="/season/Winter"> Winter</a>
+    </div>
+
+    <h1>Everything in {{ season }}</h1>
+    <!--first category : fishes in the current season-->
+    <section>
+        <h2> Fishes available in {{ season }}</h2>
+        {% if fishes %}
+        <ul>
+            {% for fish in fishes %}
+            <li>
+                <strong>{{ fish[1] }}</strong>
+                <a href="/fish/{{ fish[0] }}"> View Details</a>
+            </li>
+        {% endfor %]}
+        </ul>  
+    {% else %}
+        <p>No fish found in this section</p>
+    {% endif %}
+</section>
+
+<hr>
+<!--second category-->
+<section>
+    <h2> Crops to plant in {{ season }}</h2>
+    {% if plant in plants %}
+        <ul>
+        {{% for plant in plants %}}
+            <li>
+            <strong>{{ plant[1] }}</strong>
+            <a href="/planting/{{ plant[0] }}">View Details</a>
+            </li>
+        {{% endfor%}}
+        </ul>
+    {% else %}
+        <p>No crops found for this season</p>
+    {{% endif %}}
+    </section>
+
+</body>
+</html>
