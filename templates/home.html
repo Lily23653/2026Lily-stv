@@ -1,4 +1,51 @@
 {% extends "basic.html" %}
 {% block body %}
 
+<!--main image at the top: main banner-->
+<div class="home-hero">
+    <img src="{{ url_for('static', filename='image/main.png') }}" alt="Stardew Valley main banner">
+</div>
+
+<!--introducing the three section on home page-->
+<div class="home-sections">
+    <!--first section-->
+    <div class="home-card">
+        <div class="card-img">
+            <img src="{{ url_for('static', filename='image/fishing.png')}}" alt="Fishing section">
+        </div>
+        <div class="card-info">
+            <h2>Fishing Guide</h2>
+            <p>Dive into the relaxing world of fishing and discover the many creatures that live in the valley’s rivers, lakes, and other waters. Different fish can be found in different locations, seasons, weather conditions, and times of day. Explore the waters, learn about each species, and improve your fishing skills as you work towards completing your collection.</p>
+            <a href="/fishing" class="card-link">View the fishing guide book</a>
+        </div>
+    </div>
+
+    <!--second section-->
+    <div class="home-card">
+        <div class="card-img">
+            <img src=" {{url_for('static', filename='image/farm.png')}}" alt="Farm section">
+        </div>
+        <div class="card-info">
+            <h2>Crops and Farming</h2>
+            <p>
+                Create and develop your own farm by growing a wide variety of crops throughout the changing seasons. Choose what to plant, take care of your crops as they grow, and harvest them when they are ready. Each season offers different crops and farming opportunities, allowing you to experiment with your farm and make the most of the resources available around the valley.
+            </p>
+            <a href="/planting" class="card-link">View Planting Guide</a>
+        </div>
+    </div>
+
+    <!--third section-->
+    <div class="home-card">
+        <div class="card-img">
+            <img src=" {{url_for('static', filename='image/npc.png')}}" alt="NPC section">
+        </div>
+        <div class="card-info">
+            <h2>Pelican Town Villagers</h2>
+            <p>
+                Meet the many unique villagers who live throughout the valley and become part of the local community. Talk to them, learn about their lives, give them gifts, and build friendships over time. As your relationships grow, you can discover more about each character, their personalities, interests, stories, and connections with the other villagers.
+            </p>
+            <a href="/NPC" class="card-link">View NPC and Socializing Guide</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
