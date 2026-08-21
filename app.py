@@ -101,10 +101,10 @@ def npc_detail(id):
 #filter content/Filter seaction route
 @app.route("/season/<season_name>")
 def season_filter(season_name):
-#searching for specofoc season and including "All" and "Any"
+#searching for specific season and including "All" and "Any"
     season_term = f"%{season_name}%"
-    fish_list = query_db("SELECT * FROM fishing WHERE name LIKE ?;", (season_term,))
-    crop_list = query_db("SELECT * FROM planting WHERE name LIKE ?;", (season_term,))
+    fish_list = query_db("SELECT * FROM fishing WHERE season LIKE ?;", (season_term,))
+    crop_list = query_db("SELECT * FROM planting WHERE season LIKE ?;", (season_term,))
 
     return render_template("season.html", season=season_name, fish_list=fish_list, crop_list=crop_list)
 
@@ -117,7 +117,7 @@ def search():
     if query:
         search_term = f"%{query}%"
         results['fish'] = query_db("SELECT * FROM fishing WHERE name LIKE ?;", (search_term,))
-        results['crops'] = query_db("SELECT * FROM planting WHERE name LIKE ?;", (search_term,))
+        results['crops'] = query_db("SELECT * FROM planting WHERE Seed LIKE ?;", (search_term,))
         results['npcs'] = query_db("SELECT * FROM NPC WHERE name LIKE ?;", (search_term,))
         results['farms'] = query_db("SELECT * FROM Farm WHERE name LIKE ?;", (search_term,))
     return render_template("search_results.html", query=query, results=results)
