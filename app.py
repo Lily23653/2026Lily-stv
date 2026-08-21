@@ -98,50 +98,30 @@ def npc_detail(id):
         abort(404)
     return render_template("NPCdetail.html", npc=npc)
 
-#filter content
+#filter content/Filter seaction route
 @app.route("/season/<season_name>")
 def season_filter(season_name):
 #searching for specofoc season and including "All" and "Any"
-    term = f"%{season_name}%"
-    sql_fish = """
-    SELECT * FROM fishing 
-    WHERE season LIKE ? OR season LIKE '%All%' OR season LIKE '%Any%';
-    """
-    fishes = query_db(sql_fish, (term,))
+    season_term = f"%{season_name}%"
+    fish_list = query_db("SELECT * FROM fishing WHERE name LIKE ?;", (season_term,))
+    crop_list = query_db("SELECT * FROM planting WHERE name LIKE ?;", (season_term,))
 
-#search in planting
-    sql_plant = """
-    SELECT * FROM planting 
-    WHERE season LIKE ? OR season LIKE '%All%' OR season LIKE '%Any%';
-    """
-    plants = query_db(sql_plant, (term,))
-    
-    return render_template("season.html", season=season_name, fishes=fishes, plants=plants)
+    return render_template("season.html", season=season_name, fish_list=fish_list, crop_list=crop_list)
 
-#Search bar section
-@app.route('/fish', methods=['GET'])
-def search_for_fish():
-    query = request.args.get('q', "").strip()[:50]
-    season_item = request.args.get('season', '').strip()
-
-    sql = "SELECT * FROM fish WHERE 1=1"
-    params = []
-
+#Search bar section route
+@app.route("/search")
+def search():
+    query = request.args.get('q', "").strip()
+    results = {'fish': [], 'crops': [], 'npcs': [], 'farms': []}
+    #search each 4 database in order
     if query:
-        sql += " AND name LIKE ?"
-        params.append(f"%{query}%")
-    if season_item and season_item != 'All':
-        sql += " AND season_item = ?"
-        params.append(season_item)
+        search_term = f"%{query}%"
+        results['fish'] = query_db("SELECT * FROM fishing WHERE name LIKE ?;", (search_term,))
+        results['crops'] = query_db("SELECT * FROM planting WHERE name LIKE ?;", (search_term,))
+        results['npcs'] = query_db("SELECT * FROM NPC WHERE name LIKE ?;", (search_term,))
+        results['farms'] = query_db("SELECT * FROM Farm WHERE name LIKE ?;", (search_term,))
+    return render_template("search_results.html", query=query, results=results)
 
-    sql += "ORDER BY name ASC"
-
-    try:
-        fish_list = query_db(sql, params)
-    except sqlite3.Error:
-        abort(500)
-
-    return render_template('fish_list.html',fish_list=fish_list, query=query, selected_season=season_item)
 
 #If the entered web address is wrong
 @app.errorhandler(404)#When the error is 404

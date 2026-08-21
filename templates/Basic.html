@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!--initial settings: using font type in w3 and link html with css-->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -22,40 +23,35 @@
 <!--Naviation bar for all labels-->
   <div class="navbar">
     <a class="active" href="/">Home</a>
-  <a href="/fishing">Fishing</a>
-  <a href="/Farm">The Farm</a>
-  <a href="/planting">Planting</a>
-  <a href="/NPC">NPC</a>
-</div>
-  
+    <a href="/fishing">Fishing</a>
+    <a href="/Farm">The Farm</a>
+    <a href="/planting">Planting</a>
+    <a href="/NPC">NPC</a>
+</div>  
+
 <!--search bar function-->
-<form action="/search" method="GET" class="search-form">
-  <input type="text" name="q" placeholder="Search fish, crops, NPCs..." required>
-  <button type="submit">Search</button>
-</form>
+{% include "searchbar.html"%}
 
 <!--Dropdown filter-->
 <div class="dropdown">
   <button class="dropbtn">Stardew Categories</button>
-  <div class="dropdown-content">
-    <a href="/season/Spring"> Spring</a>
-    <a href="/season/Summer"> Summer</a>
-    <a href="/season/Fall"> Fall</a>
-    <a href="/season/Winter"> Winter</a>
-  </div>
+    <div class="dropdown-content">
+      <a href="/season/Spring"> Spring</a>
+      <a href="/season/Summer"> Summer</a>
+      <a href="/season/Fall"> Fall</a>
+      <a href="/season/Winter"> Winter</a>
+    </div>
 </div>
-  
+
+<!--main content area-->
 <div class="w3-container w3-padding-32">
     {% block body %}
     {% endblock %}
-  </div> 
-
-</body>
-
+</div> 
 
 <!--footer that stays at the bottom-->
 <footer>
-  <h2>contact us:              Help:
-  </h2>
+  <h2>Contact us: StardewValleyWiki@gmail.com</h2>
 </footer>
-  
+</body>
+</html>

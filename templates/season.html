@@ -5,9 +5,9 @@
 
 <!--show the items available in the current season-->
 <h2> Fishes available in {{ season }}</h2>
-{% if fishes %}
+{% if fish_list %}
     <div class="three-column">
-        {% for item in fishes %}
+        {% for item in fish_list %}
             <a href="/fish/{{ item[0] }}">
                 <div class="w3-card-4">
                     <h3>{{ item[1] }}</h3>
@@ -24,9 +24,9 @@
 <hr>
 <!--planting category-->
 <h2> Crops to plant in {{ season }}</h2>
-{% if plants %}
+{% if crop_list %}
     <div class="three-column">
-        {% for item in plants %}
+        {% for item in crop_list %}
             <a href="/planting/{{ item[0] }}">
                 <div class="w3-card-4">
                     <h3>{{ item[1] }}</h3>

@@ -1,0 +1,73 @@
+{% extends "basic.html" %}
+{% block body %}
+
+<h1>Search results for "{{ query }}"</h1>
+
+{% if not results.fish and not results.crops and not results.npcs and not results.farms %}
+    <p>No results found. Try another keyword!</p>
+{% else %}
+<!--searching results in fishing section-->
+    {% if results.fish %}
+        <h2>Fishing</h2>
+        <div class="three-column">
+            {% for item in results.fish %}
+                <a href="/fish/{{ item[0] }}">
+                    <div class="w3-card-4">
+                        <h3>{{ item[1] }}</h3>
+                        <img src="{{ item[2] }}" alt="{{ items[1] }}">
+                    </div>                    
+                </a>
+            {% endfor %}
+        </div>
+        <hr>
+    {% endif %}
+
+    <!--searching results in planting section-->
+    {% if results.crops %}
+        <h2>Planting</h2>
+        <div class="three-column">
+            {% for item in results.crops %}
+                <a href="/planting/{{ item[0] }}">
+                    <div class="w3-card-4">
+                        <h3>{{ item[1] }}</h3>
+                        <img src="{{ item[2] }}" alt="{{ items[1] }}">
+                    </div>                    
+                </a>
+            {% endfor %}
+        </div>
+        <hr>
+    {% endif %}
+
+    <!--searching results in farming section-->
+    {% if results.farms %}
+        <h2>Farm layout</h2>
+        <div class="three-column">
+            {% for item in results.farms %}
+                <a href="/Farm/{{ item[0] }}">
+                    <div class="w3-card-4">
+                        <h3>{{ item[1] }}</h3>
+                        <img src="{{ item[2] }}" alt="{{ items[1] }}">
+                    </div>                    
+                </a>
+            {% endfor %}
+        </div>
+        <hr>
+    {% endif %}
+
+    <!--searching results in NPC section-->
+    {% if results.npcs %}
+        <h2>Villagers (NPC)</h2>
+        <div class="three-column">
+            {% for item in results.npcs %}
+                <a href="/NPC/{{ item[0] }}">
+                    <div class="w3-card-4">
+                        <h3>{{ item[1] }}</h3>
+                        <img src="{{ item[2] }}" alt="{{ items[1] }}">
+                    </div>                    
+                </a>
+            {% endfor %}
+        </div>
+        <hr>
+    {% endif %}
+{% endif %}
+{% endblock %}
