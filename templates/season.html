@@ -1,53 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ season }} Season Guide</title>
-</head>
-<body>
-    <!--button to switch season-->
-    <div class="season-tabs">
-        <a href="/season/Spring"> Spring</a>
-        <a href="/season/Summer"> Summer</a>
-        <a href="/season/Fall"> Fall</a>
-        <a href="/season/Winter"> Winter</a>
-    </div>
+{% extends "basic.html" %}
+{% block body %}
 
-    <h1>Everything in {{ season }}</h1>
-    <!--first category : fishes in the current season-->
-    <section>
-        <h2> Fishes available in {{ season }}</h2>
-        {% if fishes %}
-        <ul>
-            {% for fish in fishes %}
-            <li>
-                <strong>{{ fish[1] }}</strong>
-                <a href="/fish/{{ fish[0] }}"> View Details</a>
-            </li>
+<h1>Season Filter: {{ season }}</h1>
+
+<!--show the items available in the current season-->
+<h2> Fishes available in {{ season }}</h2>
+{% if fishes %}
+    <div class="three-column">
+        {% for item in fishes %}
+            <a href="/fish/{{ item[0] }}">
+                <div class="w3-card-4">
+                    <h3>{{ item[1] }}</h3>
+                    <img src="{{ item[2] }}" alt="{{ item[1] }}">
+                </div>
+            </a>
         {% endfor %]}
-        </ul>  
-    {% else %}
-        <p>No fish found in this section</p>
-    {% endif %}
-</section>
+    </div>
+{% else %}
+    <p>No fish found in this section</p>
+{% endif %}
+
 
 <hr>
-<!--second category-->
-<section>
-    <h2> Crops to plant in {{ season }}</h2>
-    {% if plant in plants %}
-        <ul>
-        {{% for plant in plants %}}
-            <li>
-            <strong>{{ plant[1] }}</strong>
-            <a href="/planting/{{ plant[0] }}">View Details</a>
-            </li>
-        {{% endfor%}}
-        </ul>
-    {% else %}
-        <p>No crops found for this season</p>
-    {{% endif %}}
-    </section>
+<!--planting category-->
+<h2> Crops to plant in {{ season }}</h2>
+{% if plants %}
+    <div class="three-column">
+        {% for item in plants %}
+            <a href="/planting/{{ item[0] }}">
+                <div class="w3-card-4">
+                    <h3>{{ item[1] }}</h3>
+                    <img src="{{ item[2] }}" alt="{{ item[1] }}">
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No crops found for this season</p>
+{% endif %}
 
-</body>
-</html>
+{% endblock %}
