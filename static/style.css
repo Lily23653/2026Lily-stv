@@ -45,6 +45,11 @@ body {
   margin: 0;
 }
 
+/*background colour*/
+body {
+  background-color: #edf2f7;
+}
+
 /* location, size and colour of the header */
 header {
   padding: 60px;
