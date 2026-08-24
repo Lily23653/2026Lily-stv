@@ -418,3 +418,37 @@ hr {
   color: #0056b3;
   text-decoration: underline;
 }
+
+/*hover on cards*/
+.home-card {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+}
+
+/*left up the card when hover*/
+.home-card:hover {
+  transform: translate(-6px);
+  border-color: #85b2c9;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+}
+
+/*drop down when clicked*/
+.home-card:active {
+  transform: translate(-2px);
+}
+
+/*colour turn brighter when selected*/
+.home-card.selected,
+.home-card:focus-within {
+  border-color: #2B4C7E;
+  box-shadow: 0 0 0 3px rgba(43, 76, 126, 0.25), 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
