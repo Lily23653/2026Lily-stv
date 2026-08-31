@@ -101,10 +101,28 @@ def npc_detail(id):
 #filter content/Filter seaction route
 @app.route("/season/<season_name>")
 def season_filter(season_name):
-#searching for specific season and including "All" and "Any"
-    season_term = f"%{season_name}%"
-    fish_list = query_db("SELECT * FROM fishing WHERE season LIKE ?;", (season_term,))
-    crop_list = query_db("SELECT * FROM planting WHERE season LIKE ?;", (season_term,))
+#searching for fish and crops through seasons
+    db = get_db()
+    cursor = db.cursor()
+    #relating to the fish table
+    query_fish = """
+        SELECT fish.*
+        FROM fish
+        JOIN seasons ON fish.season_id = seasons.id
+        WHERE seasons.season_name = ?
+    """
+    cursor.execute(query_fish, (season_name,))
+    fish_list = cursor.fetchall()
+
+    #relating to the crops table
+    query_crops = """
+        SELECT planting.*
+        FROM planting
+        JOIN seasons ON planting.season_id = seasons.id
+        WHERE seasons.season_name = ?
+    """
+    cursor.execute(query_crops, (season_name,))
+    crop_list = cursor.fetchall()
 
     return render_template("season.html", season=season_name, fish_list=fish_list, crop_list=crop_list)
 

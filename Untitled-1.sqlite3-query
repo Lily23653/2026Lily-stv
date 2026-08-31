@@ -50,3 +50,10 @@ CREATE TABLE users (
     password TEXT
     
 );
+
+CREATE TABLE seasons (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    season_name VARCHAR(50) NOT NULL    
+);
+
+INSERT INTO seasons (season_name) VALUES ('Spring'), ('Summer'), ('Fall'), ('Winter'); 
