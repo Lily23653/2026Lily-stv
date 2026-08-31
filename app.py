@@ -12,7 +12,8 @@ def get_db():
     return db
 
 #Building connection with database
-def get_db_connection(exception):
+@app.teardown_appcontext
+def close_db_connection(exception):
     db= getattr(g, "_database", None)
     if db is not None:
         db.close()
@@ -106,9 +107,9 @@ def season_filter(season_name):
     cursor = db.cursor()
     #relating to the fish table
     query_fish = """
-        SELECT fish.*
-        FROM fish
-        JOIN seasons ON fish.season_id = seasons.id
+        SELECT fishing.*
+        FROM fishing
+        JOIN seasons ON fishing.season_id = seasons.id
         WHERE seasons.season_name = ?
     """
     cursor.execute(query_fish, (season_name,))

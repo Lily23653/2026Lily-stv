@@ -20,28 +20,31 @@
     <p>Create the farm of your dreams: Turn your overgrown fields into a lively and bountiful farm! </p>
   </header>
 
-<!--Naviation bar for all labels-->
+<!-- 1. 纯净的 Navbar（只有页面链接） -->
   <div class="navbar">
     <a class="active" href="/">Home</a>
     <a href="/fishing">Fishing</a>
-    <a href="/Farm">The Farm</a>
+    <a href="/farm">The Farm</a>
     <a href="/planting">Planting</a>
-    <a href="/NPC">NPC</a>
-    <!--Dropdown filter-->
-    <div class="dropdown">
-      <button class="dropbtn">Stardew Categories</button>
-      <div class="dropdown-content">
-        <a href="/season/Spring"> Spring</a>
-        <a href="/season/Summer"> Summer</a>
-        <a href="/season/Fall"> Fall</a>
-        <a href="/season/Winter"> Winter</a>
-      </div>
+    <a href="/npc">NPC</a>
   </div>
-  <!--search bar function-->
-{% include "searchbar.html"%}
-</div> 
 
+ <!-- 工具栏：直接用一个 flex 容器把它们硬绑定在同一行 -->
+  <div class="toolbar-inline">
+    <!-- 1. 搜索表单 -->
+    {% include "searchbar.html" %}
 
+    <!-- 2. 下拉菜单（紧跟在绿色 Search 按钮右边） -->
+    <div class="dropdown">
+      <button class="dropbtn">Stardew Categories ▾</button>
+      <div class="dropdown-content">
+        <a href="/season/Spring">Spring</a>
+        <a href="/season/Summer">Summer</a>
+        <a href="/season/Fall">Fall</a>
+        <a href="/season/Winter">Winter</a>
+      </div>
+    </div>
+  </div>
 
 <!--main content area-->
 <div class="w3-container w3-padding-32">
