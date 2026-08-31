@@ -53,7 +53,7 @@ def fish_detail(id):
 def planting():
     sql= "SELECT * FROM planting;"
     planting = query_db(sql)
-    return render_template("Planting.html",planting=planting)
+    return render_template("planting.html",planting=planting)
 
 # Going to a specific planting page
 @app.route("/planting/<int:id>")
@@ -70,7 +70,7 @@ def plant_detail(id):
 def farm_list():
     sql= "SELECT * FROM Farm;"
     farm = query_db(sql)
-    return render_template("Farm.html",farm=farm)
+    return render_template("farm.html",farm=farm)
 
 # Going to a specific farm layout page
 @app.route("/Farm/<int:id>")
@@ -80,14 +80,14 @@ def farm_detail(id):
     farm = query_db(sql, (id,), one=True)
     if not farm:
         abort(404)
-    return render_template("FarmLayout.html", farm=farm)
+    return render_template("farmlayout.html", farm=farm)
 
 #Main page for all NPC
 @app.route("/NPC")
 def npc_list():
     sql= "SELECT * FROM NPC;"
     npc = query_db(sql)
-    return render_template("NPC.html",NPC=npc)
+    return render_template("npc.html",NPC=npc)
 
 # Going to a specific NPC detail page
 @app.route("/NPC/<int:id>")
@@ -97,7 +97,7 @@ def npc_detail(id):
     npc = query_db(sql, (id,), one=True)
     if not npc:
         abort(404)
-    return render_template("NPCdetail.html", npc=npc)
+    return render_template("npcdetail.html", npc=npc)
 
 #filter content/Filter seaction route
 @app.route("/season/<season_name>")
