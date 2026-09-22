@@ -71,31 +71,31 @@ def plant_detail(id):
     return render_template("plant.html", plant=plant)
 
 #Main page for all Farm
-@app.route("/Farm")
+@app.route("/farm")
 def farm_list():
     sql= "SELECT * FROM Farm;"
     farm = query_db(sql)
     return render_template("farm.html",farm=farm)
 
 # Going to a specific farm layout page
-@app.route("/Farm/<int:id>")
+@app.route("/farm/<int:id>")
 def farm_detail(id):
     sql = """
-                SELECT * FROM farm WHERE id=?;"""
+                SELECT * FROM Farm WHERE id=?;"""
     farm = query_db(sql, (id,), one=True)
     if not farm:
         abort(404)
     return render_template("farmlayout.html", farm=farm)
 
 #Main page for all NPC
-@app.route("/NPC")
+@app.route("/npc")
 def npc_list():
     sql= "SELECT * FROM NPC;"
     npc = query_db(sql)
     return render_template("npc.html",NPC=npc)
 
 # Going to a specific NPC detail page
-@app.route("/NPC/<int:id>")
+@app.route("/npc/<int:id>")
 def npc_detail(id):
     sql = """
                 SELECT * FROM NPC WHERE id=?;"""
