@@ -20,7 +20,7 @@
     <p>Create the farm of your dreams: Turn your overgrown fields into a lively and bountiful farm! </p>
   </header>
 
-<!-- 1. 纯净的 Navbar（只有页面链接） -->
+<!--navigation bar with the links to the specific page -->
   <div class="navbar">
     <a class="active" href="/">Home</a>
     <a href="/fishing">Fishing</a>
@@ -29,12 +29,11 @@
     <a href="/npc">NPC</a>
   </div>
 
- <!-- 工具栏：直接用一个 flex 容器把它们硬绑定在同一行 -->
   <div class="toolbar-inline">
-    <!-- 1. 搜索表单 -->
+    <!--search bar-->
     {% include "searchbar.html" %}
 
-    <!-- 2. 下拉菜单（紧跟在绿色 Search 按钮右边） -->
+    <!--dropdown filter that goes to the sepcific label-->
     <div class="dropdown">
       <button class="dropbtn">Stardew Categories ▾</button>
       <div class="dropdown-content">
@@ -52,7 +51,7 @@
     {% endblock %}
 </div> 
 
-<!--footer that stays at the bottom-->
+<!--footer that stays at the bottom on every page-->
 <footer>
   <h2>Contact us: StardewValleyWiki@gmail.com</h2>
 </footer>

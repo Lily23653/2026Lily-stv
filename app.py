@@ -4,25 +4,30 @@ import sqlite3
 app = Flask(__name__)
 DATABASE = 'database.db'
 
+#open connection management
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
         db = g._database = sqlite3.connect(DATABASE)
+        #enable accessing query results as dictionary rows
         db.row_factory = sqlite3.Row
     return db
 
-#Building connection with database
+#automatically close satabase connection when request context ends
 @app.teardown_appcontext
 def close_db_connection(exception):
     db= getattr(g, "_database", None)
     if db is not None:
         db.close()
 
+#generic helper function for executing SQL queries safely with parameters
 def query_db(query, args=(), one=False):
     cur = get_db().execute(query, args)
     rv = cur.fetchall()
     cur.close()
     return (rv[0] if rv else None) if one else rv
+
+#         Detail routes:
 
 #route to other pages
 @app.route("/")
@@ -143,14 +148,17 @@ def search():
 
 
 #If the entered web address is wrong
-@app.errorhandler(404)#When the error is 404
+
+#When the error is 404
+@app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
 
-@app.errorhandler(500)#When the inner system went wrong (500)
+#When the inner system went wrong (500)
+@app.errorhandler(500)
 def internal_server_error(e):
     return render_template('500.html'), 500
 
-
+#running the application server in debug mode
 if __name__ == "__main__":
     app.run(debug=True)
