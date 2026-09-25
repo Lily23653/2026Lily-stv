@@ -1,17 +1,14 @@
 {% extends "basic.html" %}
 {% block body %}
 
-<!-- item image -->
-<div class="two-column">
-    <img src="{{ farm[2] }}" alt="{{ farm[2] }}">
-    <!-- information panel -->
-    <div class="info">
-        <h1>Name: {{ farm[1] }}</h1>
-        <h1>specialty: {{ farm[3] }}</h1>
-        <h1>Difficulty: {{ farm[4] }}</h1>
-        <h1>Pros: {{ farm[5] }}</h1>
-        <h1>Cons: {{ farm[6] }}</h1>
-    </div>
+<!-- information panel -->
+<div class="info">
+    <h1>Name: {{ farm[1] }}</h1>
+    <h1>specialty: {{ farm[3] }}</h1>
+    <h1>Difficulty: {{ farm[4] }}</h1>
+    <h1>Pros: {{ farm[5] }}</h1>
+    <h1>Cons: {{ farm[6] }}</h1>
 </div>
+
 
 {% endblock %}

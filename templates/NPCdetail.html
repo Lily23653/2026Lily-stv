@@ -1,15 +1,12 @@
 {% extends "basic.html" %}
 {% block body %}
 
-<!-- item image -->
-<div class="two-column">
-    <img src="{{ npc[4] }}" alt="{{ npc[4] }}">
-    <!-- information panel -->
-    <div class="info">
-        <h1>Name: {{ npc[1] }}</h1>
-        <h1>Birthday: {{ npc[2] }}</h1>
-        <h1>Address: {{ npc[3] }}</h1>
-    </div>
+<!-- information panel -->
+<div class="info">
+    <h1>Name: {{ npc[1] }}</h1>
+    <h1>Birthday: {{ npc[2] }}</h1>
+    <h1>Address: {{ npc[3] }}</h1>
 </div>
+
 
 {% endblock %}
