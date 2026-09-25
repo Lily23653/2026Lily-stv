@@ -139,11 +139,11 @@ def season_filter(season_name):
 def search():
     query = request.args.get('q', "").strip()
     results = {'fish': [], 'crops': [], 'npcs': [], 'farms': []}
-    #Search each of the 4 database tables in order using lowercase table/column names
+    #Search each of the 4 database tables in order using lowercase table names
     if query:
         search_term = f"%{query}%"
         results['fish'] = query_db("SELECT * FROM fishing WHERE name LIKE ?;", (search_term,))
-        results['crops'] = query_db("SELECT * FROM planting WHERE seed LIKE ?;", (search_term,))
+        results['crops'] = query_db("SELECT * FROM planting WHERE name LIKE ?;", (search_term,))
         results['npcs'] = query_db("SELECT * FROM npc WHERE name LIKE ?;", (search_term,))
         results['farms'] = query_db("SELECT * FROM farm WHERE name LIKE ?;", (search_term,))
     return render_template("search_results.html", query=query, results=results)
