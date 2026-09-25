@@ -9,6 +9,8 @@ def get_db():
     db = getattr(g, '_database', None)
     if db is None:
         db = g._database = sqlite3.connect(DATABASE)
+        
+        db.execute('PRAGMA foreign_keys = ON;')
         #enable accessing query results as dictionary rows
         db.row_factory = sqlite3.Row
     return db
@@ -73,7 +75,7 @@ def plant_detail(id):
 #Main page for all Farm
 @app.route("/farm")
 def farm_list():
-    sql= "SELECT * FROM Farm;"
+    sql= "SELECT * FROM farm;"
     farm = query_db(sql)
     return render_template("farm.html",farm=farm)
 
@@ -81,7 +83,7 @@ def farm_list():
 @app.route("/farm/<int:id>")
 def farm_detail(id):
     sql = """
-                SELECT * FROM Farm WHERE id=?;"""
+                SELECT * FROM farm WHERE id=?;"""
     farm = query_db(sql, (id,), one=True)
     if not farm:
         abort(404)
@@ -90,7 +92,7 @@ def farm_detail(id):
 #Main page for all NPC
 @app.route("/npc")
 def npc_list():
-    sql= "SELECT * FROM NPC;"
+    sql= "SELECT * FROM npc;"
     npc = query_db(sql)
     return render_template("npc.html",NPC=npc)
 
@@ -98,7 +100,7 @@ def npc_list():
 @app.route("/npc/<int:id>")
 def npc_detail(id):
     sql = """
-                SELECT * FROM NPC WHERE id=?;"""
+                SELECT * FROM npc WHERE id=?;"""
     npc = query_db(sql, (id,), one=True)
     if not npc:
         abort(404)
@@ -137,13 +139,13 @@ def season_filter(season_name):
 def search():
     query = request.args.get('q', "").strip()
     results = {'fish': [], 'crops': [], 'npcs': [], 'farms': []}
-    #search each 4 database in order
+    #Search each of the 4 database tables in order using lowercase table/column names
     if query:
         search_term = f"%{query}%"
         results['fish'] = query_db("SELECT * FROM fishing WHERE name LIKE ?;", (search_term,))
-        results['crops'] = query_db("SELECT * FROM planting WHERE Seed LIKE ?;", (search_term,))
-        results['npcs'] = query_db("SELECT * FROM NPC WHERE name LIKE ?;", (search_term,))
-        results['farms'] = query_db("SELECT * FROM Farm WHERE name LIKE ?;", (search_term,))
+        results['crops'] = query_db("SELECT * FROM planting WHERE seed LIKE ?;", (search_term,))
+        results['npcs'] = query_db("SELECT * FROM npc WHERE name LIKE ?;", (search_term,))
+        results['farms'] = query_db("SELECT * FROM farm WHERE name LIKE ?;", (search_term,))
     return render_template("search_results.html", query=query, results=results)
 
 

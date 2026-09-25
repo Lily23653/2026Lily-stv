@@ -43,7 +43,7 @@
         <h2>Farm layout</h2>
         <div class="three-column">
             {% for item in results.farms %}
-                <a href="/Farm/{{ item[0] }}">
+                <a href="/farm/{{ item[0] }}">
                     <div class="w3-card-4">
                         <h3>{{ item[1] }}</h3>
                         <img src="{{ item[2] }}" alt="{{ item[1] }}">
@@ -59,7 +59,7 @@
         <h2>Villagers (NPC)</h2>
         <div class="three-column">
             {% for item in results.npcs %}
-                <a href="/NPC/{{ item[0] }}">
+                <a href="/npc/{{ item[0] }}">
                     <div class="w3-card-4">
                         <h3>{{ item[1] }}</h3>
                         <img src="{{ item[2] }}" alt="{{ item[1] }}">
