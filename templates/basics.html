@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!--initial settings: using font type in w3 and link html with css-->
+<!--Global head configuration, links external W3.CSS, Google Web Fonts, and local CSS-->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -13,12 +13,13 @@
 
 <!--the header for all the pages-->
 <body>
+  <!-- Header banner with background gradient overlay configured in CSS -->
   <header>
     <h1>Stardew Valley</h1>
     <p>Create the farm of your dreams: Turn your overgrown fields into a lively and bountiful farm! </p>
   </header>
 
-<!--navigation bar with the links to the specific page -->
+<!-- Global Navigation Bar providing direct access to core entity pages -->>
   <div class="navbar">
     <a class="active" href="/">Home</a>
     <a href="/fishing">Fishing</a>
@@ -27,11 +28,12 @@
     <a href="/npc">NPC</a>
   </div>
 
+  <!--Inline utility toolbar housing global search component and relational seasonal filter -->
   <div class="toolbar-inline">
-    <!--search bar-->
+    <!--Reusable search bar component included via Jinja2 template partial -->
     {% include "searchbar.html" %}
 
-    <!--dropdown filter that goes to the sepcific label-->
+    <!--Seasonal dropdown filter querying relational SQLite database records -->
     <div class="dropdown">
       <button class="dropbtn">Stardew Categories ▾</button>
       <div class="dropdown-content">
@@ -43,13 +45,13 @@
     </div>
   </div>
 
-<!--main content area-->
+<!--Dynamic main content area inherited and populated by child templates -->
 <div class="w3-container w3-padding-32">
     {% block body %}
     {% endblock %}
 </div> 
 
-<!--footer that stays at the bottom on every page-->
+<!--Persistent footer section across all pages -->
 <footer>
   <h2>Contact us: StardewValleyWiki@gmail.com</h2>
 </footer>
