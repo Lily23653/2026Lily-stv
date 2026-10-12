@@ -157,9 +157,7 @@ def season_filter(season_name):
     crop_list = cursor.fetchall()
 
     return render_template(
-        "season.html", season=season_name,
-        fish_list=fish_list,
-        crop_list=crop_list
+        "season.html", season=season_name, fish_list=fish_list, crop_list=crop_list
     )
 
 
