@@ -77,7 +77,8 @@ def planting():
     return render_template("plantings.html", planting=planting)
 
 
-# Individual planting detail route: displays specific crop details or returns 404
+# Individual planting detail route:
+# displays specific crop details or returns "404"
 @app.route("/planting/<int:id>")
 def plant_detail(id):
     sql = """
@@ -96,7 +97,8 @@ def farm_list():
     return render_template("farms.html", farm=farm)
 
 
-# Individual farm detail route: fetches specifications for a selected farm layout ID
+# Individual farm detail route:
+# fetches specifications for a selected farm layout ID
 @app.route("/farm/<int:id>")
 def farm_detail(id):
     sql = """
@@ -155,7 +157,9 @@ def season_filter(season_name):
     crop_list = cursor.fetchall()
 
     return render_template(
-        "season.html", season=season_name, fish_list=fish_list, crop_list=crop_list
+        "season.html", season=season_name,
+        fish_list=fish_list,
+        crop_list=crop_list
     )
 
 
